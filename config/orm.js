@@ -1,29 +1,60 @@
 const connection = require("../config/connection.js");
+const { response } = require("express");
+
+function printQuestionMarks(num) {
+    let arr = [];
+  
+    for (let i = 0; i < num; i++) {
+      arr.push("?");
+    }
+  
+    return arr.toString();
+}
 
 const orm = {
-    // select method
-    selectAll: function(cb){
-        connection.query("SELECT*FROM burgers;", (err, results) => {
-            if (err) console.log("Ut oh! Couldn't connect to server");
-            cb(results)
-        }); 
-    },
+    // Select Method
+    selectAll: async function(tableName){
+        let queryString = `SELECT * FROM ??`;
+        let inserts = tableName;
 
-    // insert method
-    insertOne: function(newBurger, ){
-        let query = "INSERT INTO burgers (burger_name, devoured) VALUES (?,?)";
-        let inserts = [newBurger.burger, newBurger.devoured];
-        
-        connection.query(query, inserts, (err, results) => {
-            if (err) console.log("There was an error adding your burger");
-            cb(results);
+        let returnValue = await new Promise((resolve, reject) => {
+            connection.query(queryString, inserts, (err, results) => {
+                if (err) reject(err);
+                resolve(results);
+            }); 
         })
+
+        return returnValue;
     },
 
-    // update method
-    // updateOne: function(){
+    // Insert Method
+    insertOne: async function(tableName, cols, vals) {
+        let queryString = `INSERT INTO ?? (??) VALUES (?)`;
 
-    // }
+        await new Promise((resolve, reject) => {
+            connection.query(queryString, [tableName, cols, vals], (err, results) => {
+                if (err) reject(err);
+                resolve(results);
+            }); 
+        });  
+
+        console.log("success");
+
+    },
+
+    // Update Method
+    updateOne: async function(tableName, cols, vals) {
+        let queryString = `UPDATE ?? SET ?? = 1 WHERE id = ?`;
+
+        await new Promise((resolve, reject) => {
+            connection.query(queryString, [tableName, cols, vals], (err, results) => {
+                if (err) reject (err);
+                resolve(results);
+            });
+        });
+
+        console.log("success");
+    }
 }
 
 
