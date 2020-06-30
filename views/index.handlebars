@@ -1,0 +1,26 @@
+
+<div class="notDevoured">
+<h2>Burgers To Devour</h2>
+<ul>
+  {{#each burgers}}
+    {{#unless devoured}}
+      <li>
+          {{id}}.{{burger_name}} <button class="devourBtn" data-id="{{id}}">Devour!</button>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+</div>
+
+<div class="devoured">
+<h2>Devoured Burgers</h2>
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      <li>
+          {{id}}.{{burger_name}}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+</div>
