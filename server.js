@@ -12,14 +12,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set up handlebars
-app.set("view engine", "handlebars");
 app.engine("handlebars", handlebars({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 app.use(routes);
 
 // Start server and begin listening to client requests
 app.listen(PORT, () => {
     console.log(`Server is listening on http://localhost:${PORT}`);
-})
+});
 
 

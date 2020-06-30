@@ -4,18 +4,27 @@ const router = express.Router();
 
 // Route to get all burgers
 router.get("/", (req, res) => {
-    burger.selectAll((data) => {
-        let burgerObject = { burgers: data };
+    console.log('------- HIT "/" route! ----------');
+
+    burger.selectAllBurgers((burgerData) => {
+
+        console.log(`------- Got All the Burgers \n ${burgerData}---------`);
+
+        let burgerObject = { burgers: burgerData };
         console.log(burgerObject);
-        res.render("index", burgerObject);
+       res.render("index", burgerObject);
     });
 });
 
 // Route to create a new burger
 router.post("/api/new", (req, res) => {
-    burger.insertOne(req.body, (result) => {
+
+    let burgerName = req.body.burger_name;
+
+    burger.insertBurger(burgerName, (result) => {
         console.log("post result: ", result);
-        res.json({ id: result.id });
+
+        res.json( { id: result.insertId } );
     });
 });
 
@@ -25,7 +34,7 @@ router.put("/api/burgers/:id", (req, res) => {
 
     console.log(devouredID, " has been devoured");
 
-    burger.updateOne({ burger_name: req.body.burger_name, id: devouredID}, (result) => {
+    burger.updateBurger({id: devouredID}, (result) => {
         if (result.affectedRows === 0) {
             return res.status(404).end();
         } else {
