@@ -4,6 +4,7 @@ const orm = require("../config/orm.js");
 const burger = {
     selectAllBurgers: async function(cb) {
 
+        // Select all from burgers table
         let allBurgers = await orm.selectAll("burgers", (res)=> {
            cb(res)
         });
@@ -11,6 +12,7 @@ const burger = {
         console.log("INSIDE BURGER MODEL, selectALL fct: \n", allBurgers);
     },
 
+    // Insert new burger name into burgers table
     insertBurger: async function(vals, cb) {
        await orm.insertOne("burgers", "burger_name", vals, (res) => {
             cb(res);
@@ -19,6 +21,7 @@ const burger = {
         console.log("success --- INSERTED BURGER");
     },
 
+    // Update devoured in the burgers table where id = clicked id
     updateBurger: async function(vals, cb) {
         await orm.updateOne("burgers", "devoured", vals, (res) => {
             cb(res);

@@ -5,8 +5,10 @@
 }
 
 body {
-    background-color: lightgoldenrodyellow;
+    background-color: #f7c554;
     font-family: "Helvetica";
+    max-width: 800px;
+    margin: auto;
 }
 
 img {
@@ -18,15 +20,96 @@ img {
 
 h1 {
     text-align: center;
-    color: red;
+    color:#ed1c24;
     margin-bottom: 20px;
 }
 
-/* .devoured {
-    float: right;
+.addBurger {
+    margin: 15px;
 }
 
-.notDevoured {
-    float: left; */
-/* } */
+#burger {
+    width: 300px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
 
+#submitBtn {
+    height: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: white;
+    background-color: red;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+
+}
+ .column {
+     float: left;
+     width: 50%;
+ }
+
+ h2 {
+     text-align: center;
+     padding: 15px;
+ }
+
+ .row:after {
+     content: "";
+     display: table;
+     clear: both;
+ }
+
+ .add-burger {
+     margin: auto;
+     text-align: center;
+ }
+
+ ul {
+     list-style-type: none;
+ }
+
+ .burger-item {
+     margin-bottom: 20px;
+     line-height: 25px;
+     background-color: white;
+     padding: 5px;
+     border-radius: 4px;
+
+
+ }
+
+ .devourBtn {
+     float: right;
+     height: 25px;
+     margin-left: 5px;
+     width: 20%;
+     border-radius: 8px;
+     border: none;
+     background-color: #8dc63f;
+     color: white;
+
+ }
+
+ .notDevoured {
+     margin-right: 50px;
+ }
+
+ span {
+     width: 40px;
+     background-color: white;
+ }
+
+ .devoured-burger {
+    margin-bottom: 20px;
+    line-height: 25px;
+    background-color: #8dc63f;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+
+ }

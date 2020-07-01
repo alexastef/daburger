@@ -8,11 +8,17 @@ router.get("/", (req, res) => {
 
     burger.selectAllBurgers((burgerData) => {
 
-        console.log(`------- Got All the Burgers \n ${burgerData}---------`);
+        console.log(`------- Got All the Burgers ---------`);
 
-        let burgerObject = { burgers: burgerData };
-        console.log(burgerObject);
-       res.render("index", burgerObject);
+        let burgers = burgerData.map(({ burger_name, id, devoured }) => ({
+            burger_name: burger_name,
+            id: id,
+            devoured: devoured
+        }));
+
+        let burgerObject = { burgers: burgers };
+        console.log("This is burgers in selectAllburgers: ", burgers);
+        res.render("index", burgerObject);
     });
 });
 
@@ -28,19 +34,19 @@ router.post("/api/new", (req, res) => {
     });
 });
 
-// Route to find one specific burger
+// Route to find one specific burger that will be updated
 router.put("/api/burgers/:id", (req, res) => {
     let devouredID = req.params.id;
 
-    console.log(devouredID, " has been devoured");
-
-    burger.updateBurger({id: devouredID}, (result) => {
-        if (result.affectedRows === 0) {
+    burger.updateBurger(devouredID, (result) => {
+        if (result.affectedRows == 0) {
             return res.status(404).end();
         } else {
             res.status(200).end();
         }
     })
+    console.log(devouredID, " has been devoured");
+
 });
 
 module.exports = router;
