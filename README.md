@@ -9,9 +9,9 @@ An MVC structured restaurant app that lets users add names of burgers they'd lik
 
 [Demo here!](https://bloc-minister-61255.herokuapp.com/)
 
-![demo photo](https://imgur.com/98Gt4Vr)
+![demo photo](https://i.imgur.com/98Gt4Vr.png)
 
-![demo_two](https://imgur.com/utIGoPx)
+![demo_two](https://i.imgur.com/utIGoPx.png)
 
 
 ## Table of Contents  
